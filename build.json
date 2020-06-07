@@ -1,6 +1,10 @@
 [
-  { "11.0": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-base" },
-  { "10.2": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
-  { "10.1": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
-  { "10.0": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" }
+  { "amd64-11.0": "nvcr.io/nvidia/deepstream:5.0-dp-20.04-devel" },
+  { "amd64-10.2": "nvcr.io/nvidia/deepstream:4.0.2-19.12-devel " },
+  { "amd64-10.1": "nvcr.io/nvidia/deepstream:4.0.2-19.12-devel " },
+  { "amd64-10.0": "nvcr.io/nvidia/deepstream:4.0.2-19.12-devel " },
+  { "arm64-11.0": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-base" },
+  { "arm64-10.2": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
+  { "arm64-10.1": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
+  { "arm64-10.0": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" }
 ]

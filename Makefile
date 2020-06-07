@@ -14,7 +14,7 @@ NVIDIA_RUNTIME := $(shell docker info --format '{{ json . }}' | jq '.DefaultRunt
 ## CUDA version
 CUDA := $(shell /usr/local/cuda/bin/nvcc --version | egrep '^Cuda' | awk -F, '{ print $$2 $$3 }')
 CUDA := $(if ${CUDA},$(shell echo "${CUDA}" | awk '{ print $$2 }'),)
-BASE := $(if ${CUDA},$(shell jq -r '.[]|to_entries[]|select(.key=="'${CUDA}'").value' build.json 2> /dev/null),)
+BASE := $(if ${CUDA},$(shell jq -r '.[]|to_entries[]|select(.key=="'${BUILD_ARCH}-${CUDA}'").value' build.json 2> /dev/null),)
 
 ## test if ready-to-go
 ifeq ($(BASE),)
