@@ -12,7 +12,7 @@ IPADDR:=$(shell ./helper -i)
 
 
 # Different base images for different hardware architectures:
-BASE_IMAGE.aarch64:=nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-samples
+BASE_IMAGE.aarch64:=nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base
 BASE_IMAGE.amd64:=nvcr.io/nvidia/deepstream:5.0-dp-20.04-triton
 
 run: validate-rtspinput clean
@@ -27,7 +27,7 @@ run: validate-rtspinput clean
 	  -e ARCH=$(ARCH) \
 	  -e IPADDR=$(IPADDR) \
 	  -p 8554:8554 \
-	  $(DOCKERHUB_ID)/$(NAME)_$(ARCH):$(VERSION)
+	  $(NAME)_$(ARCH):$(VERSION)
 
 dev: validate-rtspinput clean
 	docker run -it -v `pwd`:/outside \
@@ -37,15 +37,15 @@ dev: validate-rtspinput clean
 	  -e ARCH=$(ARCH) \
 	  -e IPADDR=$(IPADDR) \
 	  -p 8554:8554 \
-	  $(DOCKERHUB_ID)/$(NAME)_$(ARCH):$(VERSION) /bin/bash
+	  $(NAME)_$(ARCH):$(VERSION) /bin/bash
 
-build: validate-dockerhubid validate-python-binding
-	docker build --build-arg BASE_IMAGE=$(BASE_IMAGE.$(ARCH)) -t $(DOCKERHUB_ID)/$(NAME)_$(ARCH):$(VERSION) .
+build: 
+	docker build --build-arg BASE_IMAGE=$(BASE_IMAGE.$(ARCH)) -t $(NAME)_$(ARCH):$(VERSION) .
 
-push: validate-dockerhubid
+push: 
 	docker push $(DOCKERHUB_ID)/$(NAME)_$(ARCH):$(VERSION) 
 
-clean: validate-dockerhubid
+clean: 
 	@docker rm -f ${NAME} >/dev/null 2>&1 || :
 
 
@@ -54,12 +54,6 @@ clean: validate-dockerhubid
 #
 
 
-validate-python-binding:
-	@if [ "" = "$(wildcard deepstream_python_v*.tbz2)" ]; \
-	  then { echo "***** ERROR: First download the Deepstream Python bindings into this directory!"; echo "*****        USE this URL:  https://developer.nvidia.com/deepstream_python_v0.5"; exit 1; }; \
-        fi
-	@sleep 1
-
 validate-rtspinput:
 	@if [ -z "${RTSPINPUT}" ]; \
           then { echo "***** ERROR: \"RTSPINPUT\" is not set!"; exit 1; }; \
@@ -67,12 +61,5 @@ validate-rtspinput:
         fi
 	@sleep 1
 
-validate-dockerhubid:
-	@if [ -z "${DOCKERHUB_ID}" ]; \
-          then { echo "***** ERROR: \"DOCKERHUB_ID\" is not set!"; exit 1; }; \
-          else echo "  NOTE: Using DockerHubID: \"${DOCKERHUB_ID}\""; \
-        fi
-	@sleep 1
 
-
-.PHONY: build run dev push clean validate-dockerhubid validate-rtspinput validate-python-binding
+.PHONY: build run dev push clean validate-dockerhubid validate-rtspinput 

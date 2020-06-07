@@ -1,4 +1,4 @@
-#ARG BASE_IMAGE=nvcr.io/nvidia/deepstream:5.0-dp-20.04-triton
+#ARG BASE_IMAGE=nvcr.io/nvidia/deepstream-l4t
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
@@ -33,10 +33,7 @@ RUN apt-get update --fix-missing && apt-get install -y \
 #
 # Place the resulting file in this directory and then you can "make build"
 #
-COPY deepstream_python_v*.tbz2 /
-WORKDIR /
-RUN tar -xvf /deepstream_python_v*.tbz2
-RUN tar -xvf /deepstream_python_v*/ds_pybind_v0.9.tbz2 -C /opt/nvidia/deepstream/deepstream-5.0/sources
+COPY deepstream_python_v0.5 /opt/nvidia/deepstream/deepstream-5.0/sources
 
 # Copy the python source and config file
 COPY deepstream-rtsp.py deepstream-rtsp.cfg / 
