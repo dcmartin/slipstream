@@ -1,8 +1,6 @@
 [
-  {
-    "10.2": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-base"
-  },
-  {
-    "10.0": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base"
-  }
+  { "11.0": "nvcr.io/nvidia/deepstream-l4t:5.0-dp-20.04-base" },
+  { "10.2": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
+  { "10.1": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" },
+  { "10.0": "nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base" }
 ]
