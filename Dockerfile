@@ -1,6 +1,5 @@
-#ARG BASE_IMAGE=nvcr.io/nvidia/deepstream-l4t
-ARG BASE_IMAGE
-FROM ${BASE_IMAGE}
+ARG BASE
+FROM ${BASE}
 
 # Install dependencies
 RUN apt-get update --fix-missing && apt-get install -y \
