@@ -1,0 +1,7 @@
+*.deb
+cuda-samples-10.2/
+cuda-samples-11.0/
+.git
+.gitignore
+README.md
+LICENSE
