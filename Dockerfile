@@ -32,7 +32,7 @@ RUN apt-get update --fix-missing && apt-get install -y \
 #
 # Place the resulting file in this directory and then you can "make build"
 #
-COPY deepstream_python_v0.5 /opt/nvidia/deepstream/deepstream-5.0/sources
+COPY deepstream_python_v0.9 /opt/nvidia/deepstream/deepstream-5.0/sources
 
 # Copy the python source and config file
 COPY deepstream-rtsp.py deepstream-rtsp.cfg / 
